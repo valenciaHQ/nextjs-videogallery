@@ -1,106 +1,47 @@
-import Image from 'next/image';
-import * as React from 'react';
-import ReactPlayer from 'react-player/lazy';
+import Head from 'next/head';
+import { useEffect, useState } from 'react';
 
-import Layout from '@/components/layout/Layout';
-import Seo from '@/components/Seo';
+import Carrousel from '@/components/Carrousel';
+import VideoPlayer from '@/components/VideoPlayer';
 
-// https://nextjs.org/docs/api-reference/next/image
+const Home = () => {
+  const [isSSR, setIsSSR] = useState(true);
 
-export default function HomePage() {
-  const [hasWindow, setHasWindow] = React.useState(false);
-  React.useEffect(() => {
-    if (typeof window !== 'undefined') {
-      setHasWindow(true);
-    }
+  useEffect(() => {
+    setIsSSR(false);
   }, []);
-
   return (
-    <Layout>
-      {/* <Seo templateTitle='Home' /> */}
-      <Seo templateTitle='Home' />
+    <div>
+      <Head>
+        <title>Video Player with Cloudinary</title>
+        <link rel='icon' href='/favicon.ico' />
+      </Head>
 
-      <main>
-        <section className='bg-white'>
-          <h1>Videos gallery</h1>
-
-          {hasWindow && (
-            <div className='container mx-auto flex flex-col items-center'>
-              <ReactPlayer url='https://www.youtube.com/watch?v=9t9Ym8CjnDI&ab_channel=StarrySky' />
-              <ReactPlayer url='https://www.youtube.com/watch?v=9t9Ym8CjnDI&ab_channel=StarrySky' />
-              <Image
-                src='https://images.pexels.com/photos/14683268/pexels-photo-14683268.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'
-                alt='some-image'
-                width={500}
-                height={500}
-              />
-              <ReactPlayer url='https://www.youtube.com/watch?v=9t9Ym8CjnDI&ab_channel=StarrySky' />
-              <ReactPlayer url='https://www.youtube.com/watch?v=9t9Ym8CjnDI&ab_channel=StarrySky' />
-              <ReactPlayer url='https://www.youtube.com/watch?v=9t9Ym8CjnDI&ab_channel=StarrySky' />
-              <ReactPlayer url='https://www.youtube.com/watch?v=9t9Ym8CjnDI&ab_channel=StarrySky' />
-              <Image
-                src='https://images.pexels.com/photos/14683268/pexels-photo-14683268.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'
-                alt='some-image'
-                width={500}
-                height={500}
-              />
-              <Image
-                src='https://images.pexels.com/photos/14683268/pexels-photo-14683268.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'
-                alt='some-image'
-                width={500}
-                height={500}
-              />
-              <Image
-                src='https://images.pexels.com/photos/14683268/pexels-photo-14683268.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'
-                alt='some-image'
-                width={500}
-                height={500}
-              />
-              <Image
-                src='https://images.pexels.com/photos/14683268/pexels-photo-14683268.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'
-                alt='some-image'
-                width={500}
-                height={500}
-              />
-              <Image
-                src='https://images.pexels.com/photos/14683268/pexels-photo-14683268.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'
-                alt='some-image'
-                width={500}
-                height={500}
-              />
-              <Image
-                src='https://images.pexels.com/photos/14683268/pexels-photo-14683268.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'
-                alt='some-image'
-                width={500}
-                height={500}
-              />
-              <Image
-                src='https://images.pexels.com/photos/14683268/pexels-photo-14683268.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'
-                alt='some-image'
-                width={500}
-                height={500}
-              />
-              <Image
-                src='https://images.pexels.com/photos/14683268/pexels-photo-14683268.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'
-                alt='some-image'
-                width={500}
-                height={500}
-              />
-              <Image
-                src='https://images.pexels.com/photos/14683268/pexels-photo-14683268.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'
-                alt='some-image'
-                width={500}
-                height={500}
-              />
-              <ReactPlayer url='https://www.youtube.com/watch?v=9t9Ym8CjnDI&ab_channel=StarrySky' />
-              <ReactPlayer url='https://www.youtube.com/watch?v=9t9Ym8CjnDI&ab_channel=StarrySky' />
-              <ReactPlayer url='https://www.youtube.com/watch?v=9t9Ym8CjnDI&ab_channel=StarrySky' />
-              <ReactPlayer url='https://www.youtube.com/watch?v=9t9Ym8CjnDI&ab_channel=StarrySky' />
-              <ReactPlayer url='https://www.youtube.com/watch?v=9t9Ym8CjnDI&ab_channel=StarrySky' />
-            </div>
-          )}
-        </section>
+      <main className='flex w-screen flex-col items-center'>
+        <h1>Video Player</h1>
+        {!isSSR && (
+          <section className='flex flex-col'>
+            <VideoPlayer />
+            <VideoPlayer />
+            <VideoPlayer />
+            <VideoPlayer />
+            <Carrousel
+              images={[
+                'https://images.pexels.com/photos/11199565/pexels-photo-11199565.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
+                'https://images.pexels.com/photos/13462177/pexels-photo-13462177.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
+                'https://images.pexels.com/photos/13813505/pexels-photo-13813505.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
+              ]}
+            />
+            <VideoPlayer />
+            <VideoPlayer />
+            <VideoPlayer />
+            <VideoPlayer />
+            <VideoPlayer />
+          </section>
+        )}
       </main>
-    </Layout>
+    </div>
   );
-}
+};
+
+export default Home;
