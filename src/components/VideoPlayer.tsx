@@ -1,21 +1,12 @@
-import { memo, useEffect, useState } from 'react';
-import { useInView } from 'react-intersection-observer';
+import { memo, useState } from 'react';
 import ReactPlayer from 'react-player/youtube';
+import { Waypoint } from 'react-waypoint';
 
 const VideoPlayer = memo(() => {
-  const { ref, inView } = useInView({ threshold: 1, rootMargin: '100px 0px' });
-  const [url, setUrl] = useState<string>('');
-
-  useEffect(() => {
-    if (inView === true) {
-      setUrl(
-        'https://www.youtube.com/watch?v=1g7TrcIlpMk&ab_channel=OliverAstrologo'
-      );
-    }
-  }, [inView, url]);
+  const [playing, setPlaying] = useState(false);
 
   return (
-    <div className='flex flex-col' ref={ref}>
+    <Waypoint onEnter={() => setPlaying(true)}>
       <div className='relative mt-10 pt-[56.25%] transition-opacity'>
         <ReactPlayer
           style={{
@@ -23,14 +14,14 @@ const VideoPlayer = memo(() => {
             top: '0',
             left: '0',
           }}
-          url={url}
+          url='https://www.youtube.com/watch?v=1g7TrcIlpMk&ab_channel=OliverAstrologo'
           width='100%'
           height='100%'
-          playing={inView}
+          playing={playing}
           fallback={<p>Loading</p>}
         />
       </div>
-    </div>
+    </Waypoint>
   );
 });
 
