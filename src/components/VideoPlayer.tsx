@@ -3,13 +3,13 @@ import { useInView } from 'react-intersection-observer';
 import ReactPlayer from 'react-player/youtube';
 
 const VideoPlayer = memo(() => {
-  const { ref, inView } = useInView({ threshold: 1 });
+  const { ref, inView } = useInView({ threshold: 1, rootMargin: '100px 0px' });
   const [url, setUrl] = useState<string>('');
 
   useEffect(() => {
     if (inView === true) {
       setUrl(
-        'https://www.youtube.com/watch?v=GTgx971O2Ow&t=24s&ab_channel=ElViajeroFeliz'
+        'https://www.youtube.com/watch?v=1g7TrcIlpMk&ab_channel=OliverAstrologo'
       );
     }
   }, [inView, url]);
@@ -26,8 +26,8 @@ const VideoPlayer = memo(() => {
           url={url}
           width='100%'
           height='100%'
-          light
-          playing
+          playing={inView}
+          fallback={<p>Loading</p>}
         />
       </div>
     </div>

@@ -1,21 +1,8 @@
-import Image from 'next/image';
 import { useState } from 'react';
 import Swipe from 'react-easy-swipe';
 import { AiOutlineLeft, AiOutlineRight } from 'react-icons/ai';
 
-// Pixel GIF code adapted from https://stackoverflow.com/a/33919020/266535
-const keyStr =
-  'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=';
-const triplet = (e1: number, e2: number, e3: number) =>
-  keyStr.charAt(e1 >> 2) +
-  keyStr.charAt(((e1 & 3) << 4) | (e2 >> 4)) +
-  keyStr.charAt(((e2 & 15) << 2) | (e3 >> 6)) +
-  keyStr.charAt(e3 & 63);
-
-const rgbDataURL = (r: number, g: number, b: number) =>
-  `data:image/gif;base64,R0lGODlhAQABAPAA${
-    triplet(0, r, g) + triplet(b, 255, 255)
-  }/yH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==`;
+import ResponsiveImage from '@/components/ResponsiveImage';
 
 /**
  * Carousel component for nextJS and Tailwind.
@@ -41,7 +28,7 @@ export default function Carousel({ images }: { images: string[] }) {
     <div className='relative my-10'>
       <AiOutlineLeft
         onClick={handlePrevSlide}
-        className='absolute inset-y-1/2 left-0 z-20 m-auto cursor-pointer text-5xl text-gray-400'
+        className='absolute inset-y-1/2 left-0 z-20 m-auto cursor-pointer text-5xl text-black'
       />
       <div className='relative m-auto flex h-[50vh] w-full overflow-hidden'>
         <Swipe
@@ -51,24 +38,14 @@ export default function Carousel({ images }: { images: string[] }) {
         >
           {images.map((image, index) => {
             if (index === currentSlide) {
-              return (
-                <Image
-                  key={index}
-                  src={image}
-                  fill
-                  className='animate-fadeIn'
-                  alt={`image-${index}`}
-                  placeholder='blur'
-                  blurDataURL={rgbDataURL(237, 181, 6)}
-                />
-              );
+              return <ResponsiveImage key={index} src={image} />;
             }
           })}
         </Swipe>
       </div>
       <AiOutlineRight
         onClick={handleNextSlide}
-        className='absolute inset-y-1/2 right-0 z-20 m-auto cursor-pointer text-5xl text-gray-400'
+        className='absolute inset-y-1/2 right-0 z-20 m-auto cursor-pointer text-5xl text-black'
       />
 
       <div className='relative flex justify-center p-2'>
