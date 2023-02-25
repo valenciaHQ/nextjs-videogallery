@@ -6,7 +6,11 @@ const VideoPlayer = memo(() => {
   const [playing, setPlaying] = useState(false);
 
   return (
-    <Waypoint onEnter={() => setPlaying(true)}>
+    <Waypoint
+      onEnter={() => setPlaying(true)}
+      onLeave={() => setPlaying(false)}
+      debug
+    >
       <div className='relative mt-10 pt-[56.25%] transition-opacity'>
         <ReactPlayer
           style={{
