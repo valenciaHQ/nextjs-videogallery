@@ -6430,6 +6430,11 @@ neo-async@^2.5.0, neo-async@^2.6.1:
   resolved "https://registry.yarnpkg.com/neo-async/-/neo-async-2.6.2.tgz#b4aafb93e3aeb2d8174ca53cf163ab7d7308305f"
   integrity sha512-Yd3UES5mWCSqR+qNT93S3UoYUkqAZ9lLg8a7g9rimsWmYGK8cVToA4/sF3RrshdyV3sAGMXVUmpMYOw+dLpOuw==
 
+next-lazy-hydrate@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/next-lazy-hydrate/-/next-lazy-hydrate-1.1.0.tgz#0fa1f83a88217cc5a9724d649e330954c789310d"
+  integrity sha512-MQ6oiHUpE10tfCJ/MGa7lhHymrAeFw2AXnfOG/kxxoSS46FCtt6MZXnn/r2phwdUh2g9C5aggB086MnugahDIg==
+
 next-purgecss@^4.0.0:
   version "4.0.0"
   resolved "https://registry.yarnpkg.com/next-purgecss/-/next-purgecss-4.0.0.tgz#33b91ddb7e382ba01898b5ae897fea5a29ea6816"

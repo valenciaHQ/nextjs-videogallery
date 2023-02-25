@@ -28,7 +28,7 @@ export default function Carousel({ images }: { images: string[] }) {
     <div className='relative my-10'>
       <AiOutlineLeft
         onClick={handlePrevSlide}
-        className='absolute inset-y-1/2 left-0 z-20 m-auto cursor-pointer text-5xl text-black'
+        className='absolute inset-y-1/2 left-0 z-20 m-auto cursor-pointer text-5xl text-black '
       />
       <div className='relative m-auto flex h-[50vh] w-full overflow-hidden'>
         <Swipe

@@ -1,15 +1,13 @@
-import dynamic from 'next/dynamic';
 import Head from 'next/head';
+import lazyHydrate from 'next-lazy-hydrate';
 import { useEffect, useState } from 'react';
 
-const VideoPlayer = dynamic(() => import('@/components/VideoPlayer'), {
-  ssr: false,
-  loading: () => <p>'Loading...'</p>,
+const VideoPlayer = lazyHydrate(() => import('@/components/VideoPlayer'), {
+  on: ['visible'],
 });
 
-const Carrousel = dynamic(() => import('@/components/Carrousel'), {
-  ssr: false,
-  loading: () => <p>'Loading...'</p>,
+const Carrousel = lazyHydrate(() => import('@/components/Carrousel'), {
+  on: ['visible'],
 });
 
 const Home = () => {
