@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
+    "build:analyze": "ANALYZE=true next build",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
@@ -18,15 +19,15 @@
     "prepare": "husky install"
   },
   "dependencies": {
-    "clsx": "^1.2.1",
+    "@next/bundle-analyzer": "^13.2.1",
     "next": "^13.1.6",
+    "next-purgecss": "^4.0.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-easy-swipe": "^0.0.23",
     "react-icons": "^4.7.1",
     "react-intersection-observer": "^9.4.3",
-    "react-player": "^2.11.2",
-    "tailwind-merge": "^1.9.1"
+    "react-player": "^2.11.2"
   },
   "devDependencies": {
     "@commitlint/cli": "^16.3.0",

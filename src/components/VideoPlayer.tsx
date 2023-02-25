@@ -1,26 +1,29 @@
+import { memo, useEffect, useState } from 'react';
 import { useInView } from 'react-intersection-observer';
-import ReactPlayer from 'react-player/lazy';
+import ReactPlayer from 'react-player/youtube';
 
-const VideoPlayer = () => {
-  const { ref, inView } = useInView({
-    /* Optional options */
-    threshold: 0,
-  });
+const VideoPlayer = memo(() => {
+  const { ref, inView } = useInView({ threshold: 1 });
+  const [url, setUrl] = useState<string>('');
+
+  useEffect(() => {
+    if (inView === true) {
+      setUrl(
+        'https://www.youtube.com/watch?v=GTgx971O2Ow&t=24s&ab_channel=ElViajeroFeliz'
+      );
+    }
+  }, [inView, url]);
 
   return (
-    <div ref={ref} className='flex flex-col'>
-      <h2>{`Header inside viewport ${inView}.`}</h2>
-      <div className='relative mt-10 pt-[56.25%]'>
+    <div className='flex flex-col' ref={ref}>
+      <div className='relative mt-10 pt-[56.25%] transition-opacity'>
         <ReactPlayer
           style={{
             position: 'absolute',
             top: '0',
             left: '0',
           }}
-          url='http://www.youtube.com/watch?v=1La4QzGeaaQ&ab_channel=Jacob%2BKatieSchwarz'
-          config={{
-            youtube: { playerVars: { origin: 'http://www.youtube.com' } },
-          }}
+          url={url}
           width='100%'
           height='100%'
           light
@@ -29,6 +32,6 @@ const VideoPlayer = () => {
       </div>
     </div>
   );
-};
+});
 
 export default VideoPlayer;

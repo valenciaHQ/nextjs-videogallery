@@ -1,8 +1,16 @@
+import dynamic from 'next/dynamic';
 import Head from 'next/head';
 import { useEffect, useState } from 'react';
 
-import Carrousel from '@/components/Carrousel';
-import VideoPlayer from '@/components/VideoPlayer';
+const VideoPlayer = dynamic(() => import('@/components/VideoPlayer'), {
+  ssr: false,
+  loading: () => <p>'Loading...'</p>,
+});
+
+const Carrousel = dynamic(() => import('@/components/Carrousel'), {
+  ssr: false,
+  loading: () => <p>'Loading...'</p>,
+});
 
 const Home = () => {
   const [isSSR, setIsSSR] = useState(true);
@@ -11,16 +19,16 @@ const Home = () => {
     setIsSSR(false);
   }, []);
   return (
-    <div>
+    <>
       <Head>
         <title>Video Player with Cloudinary</title>
         <link rel='icon' href='/favicon.ico' />
       </Head>
 
-      <main className='flex w-screen flex-col items-center'>
+      <main className='flex flex-col items-center'>
         <h1>Video Player</h1>
         {!isSSR && (
-          <section className='flex flex-col'>
+          <section className='flex w-full flex-col'>
             <VideoPlayer />
             <VideoPlayer />
             <VideoPlayer />
@@ -40,7 +48,7 @@ const Home = () => {
           </section>
         )}
       </main>
-    </div>
+    </>
   );
 };
 
