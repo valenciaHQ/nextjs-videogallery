@@ -1,15 +1,16 @@
-import { memo } from 'react';
-import handleViewport from 'react-in-viewport';
-import ReactPlayer from 'react-player/youtube';
+import { memo, useRef } from 'react';
+import { useInViewport } from 'react-in-viewport';
+import ReactPlayer from 'react-player/lazy';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const VideoPlayer = memo((props: any) => {
-  const { inViewport, forwardedRef } = props;
+  const myRef: React.RefObject<HTMLElement> = useRef(null);
+  const { inViewport } = useInViewport(myRef, props);
 
   return (
     <div
       className='relative mt-10 pt-[56.25%] transition-opacity'
-      ref={forwardedRef}
+      ref={myRef as React.RefObject<HTMLDivElement>}
     >
       <ReactPlayer
         style={{
@@ -23,14 +24,12 @@ const VideoPlayer = memo((props: any) => {
         playing={inViewport}
         playsInline
         fallback={<p>Loading</p>}
+        config={{
+          youtube: { playerVars: { origin: 'https://www.youtube.com' } },
+        }}
       />
     </div>
   );
 });
 
-export { VideoPlayer };
-
-const ViewportVideoPlayer = handleViewport(
-  VideoPlayer /** options: {}, config: {} **/
-);
-export default ViewportVideoPlayer;
+export default VideoPlayer;
