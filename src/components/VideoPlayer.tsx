@@ -27,6 +27,7 @@ const VideoPlayer = memo(() => {
           height='100%'
           playing={playing}
           playsInline={true}
+          muted={true}
           fallback={<p>Loading</p>}
           config={{
             youtube: {
