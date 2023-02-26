@@ -1,5 +1,6 @@
 import Head from 'next/head';
 import lazyHydrate from 'next-lazy-hydrate';
+import { useEffect } from 'react';
 import { isMobile } from 'react-device-detect';
 
 const VideoPlayer = lazyHydrate(() => import('@/components/VideoPlayer'), {
@@ -11,6 +12,9 @@ const Carrousel = lazyHydrate(() => import('@/components/Carrousel'), {
 });
 
 const Home = () => {
+  useEffect(() => {
+    alert(isMobile);
+  }, []);
   return (
     <>
       <Head>
