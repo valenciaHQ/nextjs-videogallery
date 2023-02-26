@@ -1,4 +1,4 @@
-import { memo, useRef } from 'react';
+import { memo, useEffect, useRef, useState } from 'react';
 import { useInViewport } from 'react-in-viewport';
 import ReactPlayer from 'react-player/lazy';
 
@@ -6,6 +6,13 @@ import ReactPlayer from 'react-player/lazy';
 const VideoPlayer = memo((props: any) => {
   const myRef: React.RefObject<HTMLElement> = useRef(null);
   const { inViewport } = useInViewport(myRef, props);
+  const [playing, setPlaying] = useState(false);
+
+  useEffect(() => {
+    if (inViewport) {
+      setPlaying(true);
+    }
+  }, [inViewport]);
 
   return (
     <div
@@ -21,12 +28,16 @@ const VideoPlayer = memo((props: any) => {
         url='https://www.youtube.com/watch?v=1g7TrcIlpMk&ab_channel=OliverAstrologo'
         width='100%'
         height='100%'
-        playing={inViewport}
+        playing={playing}
         playsInline
         fallback={<p>Loading</p>}
         config={{
-          youtube: { playerVars: { origin: 'https://www.youtube.com' } },
+          youtube: {
+            playerVars: { origin: 'https://www.youtube.com' },
+            onUnstarted: () => inViewport && setPlaying(true),
+          },
         }}
+        on
       />
     </div>
   );
