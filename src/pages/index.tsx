@@ -1,5 +1,6 @@
 import Head from 'next/head';
 import lazyHydrate from 'next-lazy-hydrate';
+import { isMobile } from 'react-device-detect';
 
 const VideoPlayer = lazyHydrate(() => import('@/components/VideoPlayer'), {
   on: ['visible'],
@@ -20,7 +21,7 @@ const Home = () => {
       <main className='flex flex-col items-center bg-gradient-to-r from-cyan-500 to-blue-500 md:p-20'>
         <h1>Video Player</h1>
         <section className='flex w-full flex-col'>
-          <VideoPlayer />
+          <VideoPlayer playing={isMobile} />
           <Carrousel
             images={[
               'https://images.pexels.com/photos/813465/pexels-photo-813465.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
