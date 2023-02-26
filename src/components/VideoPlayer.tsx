@@ -21,6 +21,7 @@ const VideoPlayer = memo((props: any) => {
         width='100%'
         height='100%'
         playing={inViewport}
+        playsInline
         fallback={<p>Loading</p>}
       />
     </div>
