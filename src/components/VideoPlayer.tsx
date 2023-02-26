@@ -1,13 +1,11 @@
-import { memo, useEffect } from 'react';
+import { memo } from 'react';
 import handleViewport from 'react-in-viewport';
 import ReactPlayer from 'react-player/youtube';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const VideoPlayer = memo((props: any) => {
-  const { inViewport, forwardedRef, playing } = props;
-  useEffect(() => {
-    alert(`inViewport: ${inViewport}, will play ${playing && inViewport}`);
-  }, [inViewport, playing]);
+  const { inViewport, forwardedRef } = props;
+
   return (
     <div
       className='relative mt-10 pt-[56.25%] transition-opacity'
@@ -22,7 +20,7 @@ const VideoPlayer = memo((props: any) => {
         url='https://www.youtube.com/watch?v=1g7TrcIlpMk&ab_channel=OliverAstrologo'
         width='100%'
         height='100%'
-        playing={playing && inViewport}
+        playing={inViewport}
         fallback={<p>Loading</p>}
       />
     </div>
