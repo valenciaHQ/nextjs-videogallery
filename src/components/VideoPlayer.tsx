@@ -14,7 +14,11 @@ const VideoPlayer = memo(() => {
   };
 
   return (
-    <Waypoint onEnter={handleEnterViewport} onLeave={handleExitViewport}>
+    <Waypoint
+      onEnter={handleEnterViewport}
+      onLeave={handleExitViewport}
+      scrollableAncestor='window'
+    >
       <div className='relative mt-10 pt-[56.25%] transition-opacity'>
         <ReactPlayer
           style={{
@@ -34,7 +38,6 @@ const VideoPlayer = memo(() => {
               playerVars: { origin: 'https://www.youtube.com' },
             },
           }}
-          on
         />
       </div>
     </Waypoint>
