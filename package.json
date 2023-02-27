@@ -28,7 +28,8 @@
     "react-easy-swipe": "^0.0.23",
     "react-icons": "^4.7.1",
     "react-in-viewport": "^1.0.0-alpha.29",
-    "react-player": "^2.11.2"
+    "react-player": "^2.11.2",
+    "react-waypoint": "^10.3.0"
   },
   "devDependencies": {
     "@commitlint/cli": "^16.3.0",
